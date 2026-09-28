@@ -1,0 +1,16 @@
+{
+	"required": false,
+	"package": "com.github.duskong.waystonemap.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ClientPacketListenerCommandMixin",
+		"XaeroMapGuiRightClickMenu",
+		"XaeroMapTeleporterCommandMixin",
+		"XaeroPlayerTeleporterCommandMixin",
+		"XaeroSupportWaystonesMixin",
+		"XaeroWaypointTeleportCommandMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}
