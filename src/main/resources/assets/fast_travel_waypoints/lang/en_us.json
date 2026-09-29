@@ -1,3 +1,8 @@
 {
-  "waystonemap.message.disable.cross-dimensional": "Cross-dimensional fast travel is disabled on this server."
+  "name.waystonemap.waystone": "Waystone",
+  "chat.waystonemap.disable_cross_dimensional": "Cross-dimensional fast travel is disabled on this server.",
+  "chat.waystonemap.no_waystone": "No Waystone at the selected waypoint.",
+  "chat.waystonemap.no_empty_space": "No empty space next to that waystone.",
+  "chat.waystonemap.player_requires_open_sky": "Fast travel requires open sky.",
+  "chat.waystonemap.destination_requires_open_sky": "Fast travel destination requires open sky."
 }

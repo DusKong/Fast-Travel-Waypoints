@@ -1,4 +1,9 @@
 {
-  "waystones.waystone.name": "ウェイストーン",
-  "waystones.waystone.symbol": "$"
+  "name.waystonemap.waystone": "ウェイストーン",
+  "chat.waystonemap.disable_cross_dimensional": "ディメンションを超えた ファストトラベル は出来ません",
+  "chat.waystonemap.no_waystone": "ウェイポイントにウェイストーンがありません。",
+  "chat.waystonemap.no_empty_space": "ウェイストーンの隣に空きスペースがありません。",
+  "chat.waystonemap.player_requires_open_sky": "ファストトラベルには、開けた空が必要です。",
+  "chat.waystonemap.destination_requires_open_sky": "ファストトラベルの目的地には、開けた空が必要です。",
+  "gui.waystonemap.right_click_fasttravel": "ファストトラベル"
 }

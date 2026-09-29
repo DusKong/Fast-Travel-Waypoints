@@ -20,7 +20,7 @@ public class XaeroSupportWaystonesMixin {
             require = 0
     )
     private void fastTravelWaypoints$add(ThirdPartyWaypoints instance, String id, Waypoint waypoint) {
-        waypoint.setName("waystones.waystone.name");
+        waypoint.setName("name.waystonemap.waystone");
         waypoint.setInitials("☰");
         waypoint.setVisibility(WaypointVisibilityType.WORLD_MAP_LOCAL);
         instance.add(id, waypoint);

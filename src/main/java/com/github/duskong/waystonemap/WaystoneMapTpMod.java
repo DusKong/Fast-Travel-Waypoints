@@ -132,7 +132,7 @@ public class WaystoneMapTpMod implements ModInitializer {
             return 1;
         }
 
-        player.sendSystemMessage(Component.literal("No Waystone at the selected waypoint."), true);
+        player.sendSystemMessage(Component.translatable("chat.waystonemap.no_waystone"), true);
         return 0;
     }
 
@@ -175,7 +175,7 @@ public class WaystoneMapTpMod implements ModInitializer {
 
         if (crossDimensional && !ModConfigs.ENABLE_CROSS_DIMENSIONAL_TRAVEL.get()) {
             player.sendSystemMessage(
-                    Component.translatable("waystonemap.message.disable.cross-dimensional").withStyle(ChatFormatting.RED),
+                    Component.translatable("chat.waystonemap.disable_cross_dimensional").withStyle(ChatFormatting.RED),
                     true
             );
             return false;
@@ -189,7 +189,7 @@ public class WaystoneMapTpMod implements ModInitializer {
             BlockPos pos = player.blockPosition().above();
             if (!SkyUtils.canSeeSkyIgnoringLeaves(level, pos)) {
                 player.sendSystemMessage(
-                        Component.literal("Fast travel requires open sky.").withStyle(ChatFormatting.RED),
+                        Component.translatable("chat.waystonemap.player_requires_open_sky").withStyle(ChatFormatting.RED),
                         true
                 );
                 return false;
@@ -202,7 +202,7 @@ public class WaystoneMapTpMod implements ModInitializer {
     private void startWaystoneTeleport(ServerPlayer player, ServerLevel level, BlockPos waystoneBottom, Vec3 fallbackExact, String waypointName, FastTravelCost travelCost) {
         Optional<Vec3> safeNow = TeleportPos.findSafeTeleportPos(level, waystoneBottom);
         if (safeNow.isEmpty()) {
-            player.sendSystemMessage(Component.literal("No empty space next to that waystone.")
+            player.sendSystemMessage(Component.translatable("chat.waystonemap.no_empty_space")
                     .withStyle(ChatFormatting.RED), true);
             return;
         }
@@ -211,7 +211,7 @@ public class WaystoneMapTpMod implements ModInitializer {
             if (ModConfigs.REQUIRE_OPEN_SKY_DESTINATION.get() && SkyUtils.isOpenSkyCheckEnabledInThisDimension(level)) {
                 BlockPos destCheck = BlockPos.containing(safeNow.get()).above();
                 if (!SkyUtils.canSeeSkyIgnoringLeaves(level, destCheck)) {
-                    player.sendSystemMessage(Component.literal("Fast travel destination requires open sky.")
+                    player.sendSystemMessage(Component.translatable("chat.waystonemap.destination_requires_open_sky")
                             .withStyle(ChatFormatting.RED), true);
                     return;
                 }
@@ -234,7 +234,7 @@ public class WaystoneMapTpMod implements ModInitializer {
         }
 
         // Never force-teleport into blocks (even for OPs). If no safe spot exists, fail with a clear message.
-        player.sendSystemMessage(Component.literal("No empty space next to that waystone.")
+        player.sendSystemMessage(Component.translatable("chat.waystonemap.no_empty_space")
                 .withStyle(net.minecraft.ChatFormatting.RED), true);
     }
 

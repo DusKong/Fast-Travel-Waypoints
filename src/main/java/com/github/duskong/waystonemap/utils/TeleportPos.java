@@ -15,26 +15,26 @@ public class TeleportPos {
     };
 
     public static Optional<Vec3> findSafeTeleportPos(ServerLevel level, BlockPos waystoneBottom) {
-        // 1) Same level with floor
+        // 1) 床と同一の高さ
         Optional<Vec3> same = findAdjacent(level, waystoneBottom, true, new int[]{0});
         if (same.isPresent()) return same;
 
-        // 2) On top of a 1-block-high neighbor (lets players stand on a block next to the waystone)
+        // 2) 高さ1ブロックの隣接ブロック（ウェイストーンの隣のブロックにプレイヤーが立つことができます）
         Optional<Vec3> atopNeighbor = findAdjacentTop(level, waystoneBottom);
         if (atopNeighbor.isPresent()) return atopNeighbor;
 
-        // 3) Above waystone (two blocks above bottom, because waystone is 2 tall)
-        // Prefer this BEFORE placing players next to floorless drop-offs.
+        // 3) ウェイストーンの上（ウェイストーンは高さ2ブロックなので、下から2ブロック目）
+        // プレイヤーを底のない崖の縁に配置する前に、こちらを優先してください。
         BlockPos aboveFeet = waystoneBottom.above(2);
         if (isTwoTallFree(level, aboveFeet, true)) {
             return Optional.of(centerFeet(aboveFeet));
         }
 
-        // 4) Lower levels with floor (up to 2 blocks down)
+        // 4) 床付きの低層レベル（最大2ブロック下まで）
         Optional<Vec3> lower = findAdjacent(level, waystoneBottom, true, new int[]{-1, -2});
         if (lower.isPresent()) return lower;
 
-        // 5) Fallback without floor requirement (same -> lower -> above)
+        // 5) 下限要件なしのフォールバック（同等 → 下位 → 上位）
         Optional<Vec3> sameNoFloor = findAdjacent(level, waystoneBottom, false, new int[]{0, -1, -2});
         if (sameNoFloor.isPresent()) return sameNoFloor;
 

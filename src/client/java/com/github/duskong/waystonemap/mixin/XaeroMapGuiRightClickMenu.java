@@ -14,6 +14,7 @@ import xaero.map.gui.GuiMap;
 import xaero.map.gui.IRightClickableElement;
 import xaero.map.gui.dropdown.rightclick.GuiRightClickMenu;
 import xaero.map.gui.dropdown.rightclick.RightClickOption;
+import xaero.map.gui.util.GuiUtils;
 import xaero.map.mods.SupportMods;
 import xaero.map.mods.gui.WaypointReader;
 
@@ -34,6 +35,16 @@ public class XaeroMapGuiRightClickMenu {
                     if(waypoint.isThirdParty()) {
                         if(waypoint.getThirdPartyOrigin().toString().equals("waystones:waystone")) {
                             if(actionOptions.size() == 8) {
+                                actionOptions.set(3, new RightClickOption("gui.waystonemap.right_click_fasttravel", 3, target) {
+
+                                    public void onAction(Screen screen) {
+                                        SupportMods.xaeroMinimap.teleportToWaypoint(screen, guiWaypoint);
+                                    }
+
+                                    public boolean isActive() {
+                                        return SupportMods.xaeroMinimap.canTeleport(SupportMods.xaeroMinimap.getWaypointWorld());
+                                    }
+                                });
                                 actionOptions.subList(4, 7).clear();
                                 actionOptions.remove(2);
                             }
