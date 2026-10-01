@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xaero.hud.minimap.waypoint.WaypointPurpose;
 import xaero.lib.client.gui.widget.dropdown.IDropDownContainer;
 import xaero.map.element.HoveredMapElementHolder;
 import xaero.map.gui.GuiMap;
@@ -32,6 +33,7 @@ public class XaeroMapGuiRightClickMenu {
         if(target instanceof HoveredMapElementHolder<?,?> elementHolder) {
             if(elementHolder.getElement() instanceof xaero.map.mods.gui.Waypoint guiWaypoint) {
                 if(guiWaypoint.getOriginal() instanceof xaero.common.minimap.waypoints.Waypoint waypoint) {
+
                     if(waypoint.isThirdParty()) {
                         if(waypoint.getThirdPartyOrigin().toString().equals("waystones:waystone")) {
                             if(actionOptions.size() == 8) {
@@ -49,8 +51,20 @@ public class XaeroMapGuiRightClickMenu {
                                 actionOptions.remove(2);
                             }
                         }
+                        return;
+                    }
+
+                    if(actionOptions.size() == 8) {
+                        actionOptions.remove(3);
                     }
                 }
+            }
+        }
+
+        if(target instanceof GuiMap) {
+            if(actionOptions.size() == 11) {
+                actionOptions.subList(7, 10).clear();
+                actionOptions.remove(5);
             }
         }
     }
